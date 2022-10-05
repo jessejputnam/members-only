@@ -1,7 +1,28 @@
 doctype html
 html
   head
-    title= title
+    title ExcluSieve
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Gruppo&family=Passions+Conflict&family=Square+Peg&family=Tangerine:wght@400;700&display=swap" rel="stylesheet")
   body
-    block content
+    header 
+      div.header-wrapper 
+        div.title-wrapper
+          h1 Exclu
+          h1.alt-title Sieve
+        form.header-login-wrapper(method='POST' action='/')
+          div.form-control 
+            input#username.login-input(type='text' name='username' required='true' placeholder='username')
+          div.form-control 
+            input#password.login-input(type='password' name='password' required='true' placeholder='password')
+          button.btn.btn-secondary(type='submit') login
+
+    main 
+      if currentUser 
+        h1 User exists
+      else
+        h1 No user yet 
+
+      block content

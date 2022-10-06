@@ -12,17 +12,14 @@ html
         div.title-wrapper
           h1 Exclu
           h1.alt-title Sieve
-        form.header-login-wrapper(method='POST' action='/')
-          div.form-control 
-            input#username.login-input(type='text' name='username' required='true' placeholder='username')
-          div.form-control 
-            input#password.login-input(type='password' name='password' required='true' placeholder='password')
-          button.btn.btn-secondary(type='submit') login
+        div.header-login-wrapper
+          div.header-login-item 
+            img.login-img(src="images/login.png", alt="Login" height='18px')
+            a(href="/login") login 
+          div.header-login-item
+            img.login-img(src="images/register.png", alt="Login" height='18px')
+            a(href="/register") register
+
 
     main 
-      if currentUser 
-        h1 User exists
-      else
-        h1 No user yet 
-
       block content

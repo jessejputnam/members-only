@@ -3,8 +3,25 @@ require("dotenv").config();
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const bcrypt = require("bcryptjs");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+
+const User = require("./models/user");
+const mongoose = require("mongoose");
+
+const mongoDB = process.env.MONGODB_URI;
+mongoose.connect(mongoDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+const db = mongoose.connection;
+
+// Bind connection to error event (to get notification of connection errors)
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
@@ -17,6 +34,55 @@ app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(express.json());
+
+//! LOOK UP SESSION RULES, ESP ABOUT SECRET
+app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+
+// START PASSPORT
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username: username }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      }
+
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          // Passwords match, log user in
+          return done(null, user);
+        } else {
+          // Passwords do not match
+          return done(null, false, { message: "Incorrect password" });
+        }
+      });
+    });
+  })
+);
+
+// User object is serialized and added to req.session.passport object
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+// --- END PASSPORT
+
+// Get access to currentUser variable in all views with locals object
+// Must come after passport instantiation and before view renders
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));

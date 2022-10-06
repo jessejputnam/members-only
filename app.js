@@ -35,8 +35,13 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(express.json());
 
-//! LOOK UP SESSION RULES, ESP ABOUT SECRET
-app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 // START PASSPORT
 passport.use(

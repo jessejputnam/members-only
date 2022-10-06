@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-//! Password validation options?
 const UserSchema = new Schema({
   firstname: { type: String, required: true, maxLength: 30 },
   lastname: { type: String, required: true, maxLength: 30 },
+  email: { type: String, required: true },
   password: { type: String, required: true },
-  admin: { type: Boolean, required: true },
+  admin: { type: Boolean, required: true, default: false },
   membership: {
     type: String,
     required: true,

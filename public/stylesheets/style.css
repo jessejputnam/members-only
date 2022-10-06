@@ -3,6 +3,7 @@
 
   #General Formatting
   #Header
+  #Forms
   #Message Board
 
 
@@ -20,6 +21,10 @@
     "Segoe UI", Roboto, sans-serif;
   font-size: 20px;
   line-height: 22px;
+}
+
+body {
+  background-color: rgba(227, 227, 227, 0.874);
 }
 
 h1 {
@@ -42,6 +47,7 @@ input {
   padding: 5px 15px;
   border: none;
   height: 30px;
+  box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.292);
 }
 
 a {
@@ -50,8 +56,6 @@ a {
   line-height: 1rem;
   text-decoration: none;
   color: rgb(79, 79, 79);
-
-  transition: color 0.5s;
 }
 
 a:hover {
@@ -74,6 +78,11 @@ a:hover {
   font-family: "Passions Conflict";
   font-size: 1.7rem;
   border-radius: 10px;
+}
+
+.btn:hover {
+  filter: brightness(150%);
+  color: rgba(48, 143, 154, 0.724);
 }
 
 /* ############ #HEADER ############# */
@@ -126,6 +135,47 @@ h1.alt-title {
 
 .login-img {
   filter: drop-shadow(0 0 0.8px rgb(192, 253, 222));
+}
+
+/* ############ #FORMS ############# */
+.form-wrapper {
+  margin: 50px auto 0;
+  box-shadow: 0 0 3px black;
+  border-radius: 10px;
+  padding: 25px 35px 50px;
+  width: clamp(450px, 80%, 600px);
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  align-items: center;
+  background: linear-gradient(
+    to bottom right,
+    rgba(192, 192, 192, 0.2),
+    rgba(192, 192, 192, 0.2),
+    rgba(192, 192, 192, 0.2),
+    white,
+    rgba(192, 192, 192, 0.2),
+    rgba(192, 192, 192, 0.2)
+  );
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: 100%;
+}
+
+.form-control input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.816);
+}
+
+.form-control-btns {
+  display: flex;
+  column-gap: 50px;
+  align-items: center;
+  margin-top: 40px;
 }
 
 /* ############ #MESSAGE BOARD ############# */

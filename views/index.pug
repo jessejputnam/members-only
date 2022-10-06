@@ -1,10 +1,15 @@
 extends layout
 
 block content
-  h1 Welcome to ExcluSieve
+  h1 Messages
   div.welcome-wrapper
     if currentUser
-      h2 User detected
+      h2 Welcome, #{currentUser.firstname} 
+      p(style='font-size:.8rem') [Membership: #{currentUser.membership}, #{!currentUser.admin ? "non-" : ""}admin]
+      div.user-options-wrapper 
+        a(href="/add-message") add message 
+        | | &nbsp;
+        a(href="/membership") membership access
 
     else
       h2 No User detected
@@ -12,6 +17,7 @@ block content
       p If you wish to gain premium member access on sign up, remember the secret code: "access"
       p Want to sift through the veil of anonymity? #[a(href="/sign-up") Sign up!]
 
+  h2(style='text-align:center') ␥ ␥ ␥
   div.message-board 
     if messages 
 

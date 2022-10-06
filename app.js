@@ -24,7 +24,6 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
 
 const app = express();
 
@@ -34,32 +33,23 @@ app.set("view engine", "pug");
 
 app.use(logger("dev"));
 app.use(express.json());
-
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-  })
-);
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
 
 // START PASSPORT
 passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username }, (err, user) => {
-      if (err) {
-        return done(err);
-      }
+      if (err) return done(err);
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-
       bcrypt.compare(password, user.password, (err, res) => {
-        if (res) {
-          // Passwords match, log user in
-          return done(null, user);
-        } else {
-          // Passwords do not match
+        if (err) return done(err);
+        // Passwords match, log user in
+        if (res) return done(null, user);
+        // Passwords do not match
+        else {
           return done(null, false, { message: "Incorrect password" });
         }
       });
@@ -77,6 +67,15 @@ passport.deserializeUser(function (id, done) {
   });
 });
 
+app.use(
+  session({
+    secret: "catdog",
+    // secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+  })
+);
+
 app.use(passport.initialize());
 app.use(passport.session());
 // --- END PASSPORT
@@ -89,12 +88,9 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 
 // -------- ROUTES -------
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

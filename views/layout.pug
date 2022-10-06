@@ -13,12 +13,17 @@ html
           h1 Exclu
           h1.alt-title Sieve
         div.header-login-wrapper
-          div.header-login-item 
-            img.login-img(src="images/login.png", alt="Login" height='18px')
-            a(href="/login") login 
-          div.header-login-item
-            img.login-img(src="images/register.png", alt="Login" height='18px')
-            a(href="/sign-up") register
+          if currentUser 
+            img.profile-img(src="./images/user.png", alt="profile" height="50px")
+            a(href="/logout" style="color:silver") logout 
+          else 
+            div.header-login-item 
+              img.login-img(src="images/login.png", alt="Login" height='18px')
+              a(href="/login") login 
+            div.header-login-item
+              img.login-img(src="images/register.png", alt="Login" height='18px')
+              a(href="/sign-up") register
+
 
 
     main 

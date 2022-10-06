@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+
+  form.form-wrapper(method='POST' action='') 
+    h2(style='text-align:center') Log In 
+    div.form-control 
+      label(for='username' style='margin-left:15px') Email 
+      input#username(type="email" name='username' required='true' placeholder='email@email.com')
+    div.form-control 
+      label(for='password' style='margin-left:15px') Password 
+      input#password(type="password" name='password' required='true' placeholder='********')
+    div.form-control-btns 
+      a(href="/") Cancel
+      button.btn(type="submit") Submit
+  button.btn(type='button' onclick='console.log()')

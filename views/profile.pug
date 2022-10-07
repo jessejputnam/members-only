@@ -3,6 +3,9 @@ extends layout
 block content 
   div.profile-wrapper
     if currentUser 
+      if error 
+        li= error
+
       div.profile-title-wrapper
         h1(style='color:gray') #{currentUser.firstname}'s #{title} 
 

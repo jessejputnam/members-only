@@ -1,0 +1,21 @@
+extends layout 
+
+block content 
+  if currentUser
+    div.new-message-wrapper 
+      if errors  
+        ul 
+          for error in errors 
+            li!= error.msg
+
+      h1= title
+
+      form(method="POST" action="") 
+        label(for='posttitle') Title
+        input#posttitle(type='text' name='posttitle' required='true' placeholder='Title')
+        label(for='newpost')
+        textarea#newpost.new-message(name='newpost' required='true' placeholder='Type message...')
+        button.btn(type='submit') Save Message
+      
+  else 
+    a(href="/login") Please login 

@@ -86,7 +86,6 @@ app.use(passport.session());
 // Get access to currentUser variable in all views with locals object
 // Must come after passport instantiation and before view renders
 app.use(function (req, res, next) {
-  console.log(req.user);
   res.locals.currentUser = req.user;
   next();
 });

@@ -18,7 +18,13 @@ exports.member_post = (req, res, next) => {
         res.redirect("/profile");
       }
     );
+  } else {
+    res.render("profile", {
+      title: "Profile",
+      error: "Incorrect 'access' code"
+    });
   }
 };
 
+//! TO COMPLETE
 exports.admin_post = (req, res) => {};

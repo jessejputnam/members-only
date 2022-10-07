@@ -218,11 +218,55 @@ h1.alt-title {
 
 /* ############ #MESSAGE BOARD ############# */
 .message-board {
-  width: 90%;
+  width: clamp(400px, 90%, 800px);
   min-width: 400px;
   box-shadow: 0 0 2px black;
   min-height: 300px;
   margin: 20px auto 0;
   padding: 10px 15px;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+/* ############ #Add Message ############# */
+.new-message-wrapper {
+  padding: 25px;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.new-message-wrapper > form {
+  margin-top: 25px;
+}
+
+.new-message-wrapper > form > input {
+  background: gray;
+  color: white;
+  width: 300px;
+}
+
+.new-message {
+  resize: none;
+  height: 200px;
+  margin-top: 20px;
+  width: 100%;
+  min-width: 300px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.699);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.489);
+}
+
+.new-message-wrapper > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.new-message-wrapper > form > button {
+  padding: 15px;
+  margin-top: 15px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.489);
 }

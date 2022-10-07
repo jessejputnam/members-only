@@ -1,0 +1,30 @@
+extends layout 
+
+block content 
+  div.profile-wrapper
+    if currentUser 
+      div.profile-title-wrapper
+        h1(style='color:gray') #{currentUser.firstname}'s #{title} 
+
+      div.profile-info-wrapper
+        div.profile-info-child 
+          img(src="./images/anon-user.png", alt="User avatar" height='100px')
+        div.profile-info-child
+          h2= currentUser.firstname + ' ' + currentUser.lastname
+          p Membership Status: #{currentUser.membership[0].toUpperCase() + currentUser.membership.slice(1)}
+          p Admin Access: #{currentUser.admin}
+
+      div.profile-edit-wrapper 
+        if currentUser.membership === "basic"
+          form.profile-form(method='POST' action="/member") 
+            label(for="member-pass") Enter secret 'access' code for premium access
+            input#member-pass(type='text' name='member-pass')
+            button.btn(type='submit') get premium
+        if currentUser.admin === false
+          form.profile-form(method='POST' action="/admin") 
+            label(for="admin-pass") Admin Only - enter admin password
+            input#admin-pass(type='text' name='admin-pass')
+            button.btn(type='submit') admin access
+
+    else
+      h2 Error finding user, please login 

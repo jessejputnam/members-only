@@ -1,9 +1,13 @@
 extends layout 
 
-block content 
+block content
+  if errors 
+    ul
+      for error of errors
+        li= errors
 
   form.form-wrapper(method='POST' action='') 
-    h2(style='text-align:center') Log In 
+    h2(style='text-align:center')= title 
     div.form-control 
       label(for='username' style='margin-left:15px') Email 
       input#username(type="email" name='username' required='true' placeholder='email@email.com')

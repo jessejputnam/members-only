@@ -7,9 +7,9 @@ block content
       h2 Welcome, #{currentUser.firstname} 
       p(style='font-size:.8rem') [Membership: #{currentUser.membership}, #{!currentUser.admin ? "non-" : ""}admin]
       div.user-options-wrapper 
-        a(href="/add-message") add message 
+        a(href="/add-post") add message 
         | | &nbsp;
-        a(href="/membership") membership access
+        a(href="/profile") membership access
 
     else
       h2 No User detected

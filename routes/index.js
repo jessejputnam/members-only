@@ -8,6 +8,9 @@ const Message = require("../models/message");
 const User = require("../models/user");
 
 const auth_controller = require("../controllers/authController");
+const user_controller = require("../controllers/userController");
+
+/* -------------------- HOMEPAGE -------------------- */
 
 // GET request for home page.
 router.get("/", function (req, res, next) {
@@ -21,6 +24,8 @@ router.get("/", function (req, res, next) {
   //   });
   res.render("index", { title: "ExcluSieve" });
 });
+
+/* ------------------- SIGNUP/SIGNIN ------------------- */
 
 // GET request for sign up
 router.get("/sign-up", auth_controller.signup_get);
@@ -37,16 +42,20 @@ router.post("/login", auth_controller.login_post);
 // GET request for logout
 router.get("/logout", auth_controller.logout_get);
 
-// GET request for premium access
-router.get("/:id/premium", function (req, res) {});
+/* ----------------- MEMBERSHIP ACCESS ----------------- */
 
-// POST request for premium access
-router.post("/:id/premium", function (req, res) {});
+// GET request for profile
+router.get("/profile", user_controller.profile_get);
+
+// POST request for premium membership
+router.post("/member", user_controller.member_post);
+
+/* -------------------- MESSAGE -------------------- */
 
 // GET request for admin access
-router.get("/:id/admin", function (req, res) {});
+router.get("/add-post", function (req, res) {});
 
 // POST request for admin access
-router.post("/:id/admin", function (req, res) {});
+router.post("/add-post", function (req, res) {});
 
 module.exports = router;

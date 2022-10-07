@@ -4,6 +4,7 @@
   #General Formatting
   #Header
   #Forms
+  #Profile
   #Message Board
 
 
@@ -180,6 +181,39 @@ h1.alt-title {
   column-gap: 50px;
   align-items: center;
   margin-top: 40px;
+}
+
+/* ############ #PROFILE ############# */
+.profile-wrapper {
+  padding: 25px;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 800px;
+}
+
+.profile-info-wrapper {
+  display: flex;
+  column-gap: 25px;
+  align-items: center;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  row-gap: 20px;
+  box-shadow: 0 0 1px black;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+.profile-form > input {
+  margin-top: -10px;
+}
+
+.profile-form > button {
+  width: 70%;
 }
 
 /* ############ #MESSAGE BOARD ############# */

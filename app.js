@@ -4,6 +4,7 @@ const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
+const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const bcrypt = require("bcryptjs");
@@ -69,12 +70,14 @@ passport.deserializeUser(function (id, done) {
 
 app.use(
   session({
-    secret: "catdog",
-    // secret: process.env.SESSION_SECRET,
+    // secret: "catdog",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
   })
 );
+
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -83,6 +86,7 @@ app.use(passport.session());
 // Get access to currentUser variable in all views with locals object
 // Must come after passport instantiation and before view renders
 app.use(function (req, res, next) {
+  console.log(req.user);
   res.locals.currentUser = req.user;
   next();
 });

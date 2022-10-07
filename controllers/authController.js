@@ -3,6 +3,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
+//
 exports.signup_get = (req, res, next) => {
   res.render("sign-up", { title: "Register" });
 };
@@ -39,11 +40,11 @@ exports.signup_post = [
 
     try {
       // Check if user exists
-      const found_user = await User.findOne({ username: req.body.username });
-      if (found_user)
+      const found_user = await User.find({ username: req.body.username });
+      if (found_user.length > 0)
         return res.render("sign-up", {
           title: "Register",
-          errors: ["User already exists"]
+          error: "User already exists"
         });
 
       // Continue registration
@@ -67,7 +68,7 @@ exports.signup_post = [
           }
 
           // Successful, redirect to login
-          res.redirect("login");
+          res.redirect("/login");
         });
       });
     } catch (err) {
@@ -77,12 +78,13 @@ exports.signup_post = [
 ];
 
 exports.login_get = (req, res, next) => {
-  res.render("log-in", { title: "Log In" });
+  res.render("log-in", { title: "Log In", errors: req.flash("error") });
 };
 
 exports.login_post = passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/login"
+  failureRedirect: "/login",
+  failureFlash: true
 });
 
 exports.logout_get = (req, res) => {

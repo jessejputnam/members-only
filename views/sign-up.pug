@@ -6,8 +6,11 @@ block content
       for error in errors 
         li!= error.msg
 
+  if error 
+    li= error
+
   form.form-wrapper(method='POST' action='')
-    h2(style="text-align:center") Register
+    h2(style="text-align:center")= title
     div.form-control 
       label(for="username" style="margin-left:15px") Email
       input#username(type="email" name="username" required='true' placeholder='person@email.com')

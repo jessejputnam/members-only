@@ -36,7 +36,7 @@ Programming focus:
 
 ### Screenshot
 
-![]()
+![](./images/collage.jpg)
 
 ### Links
 
@@ -57,7 +57,9 @@ Programming focus:
 
 ### What I learned
 
-### Continued Development
+- How to set up authentication and sessions with Passport.
+- Double up on security -- just becuase the user cannot click to get to a POST or GET call, does not mean they cannot access it. Keep hidden in PUG with checks against `currentUser`, but also use checks against `currentUser` in the function calls themselves, creating new errors to return if accessed without proper credentials.
+- The order of operations when setting up passport sessions is very important.
 
 ## Author
 

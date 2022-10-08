@@ -1,11 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { body, validationResult } = require("express-validator");
-const bcrypt = require("bcryptjs");
-const passport = require("passport");
-
-const Message = require("../models/message");
-const User = require("../models/user");
 
 const auth_controller = require("../controllers/authController");
 const user_controller = require("../controllers/userController");

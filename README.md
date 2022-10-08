@@ -40,14 +40,13 @@ Programming focus:
 
 ### Links
 
-- Live Site URL: [Members Only]()
+- Live Site URL: [ExcluSieve](https://exclusieve.herokuapp.com/)
 
 ## My process
 
 ### Built with
 
 - Flexbox
-- Mobile-first workflow
 - [JavaScript](https://www.javascript.com/) - Frontend scripting language
 - [Node.js](https://nodejs.dev/en/) - Backend JavaScript runtime environment
 - [Express](https://expressjs.com/) - Web framework for Node.js

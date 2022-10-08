@@ -12,15 +12,32 @@ block content
         a(href="/profile") membership access
 
     else
-      h2 No User detected
-      p Here, you will find a message board of anonymous messages. You can add your own anonymous message as well if you sign up. 
-      p If you wish to gain premium member access on sign up, remember the secret code: "access"
-      p Want to sift through the veil of anonymity? #[a(href="/sign-up") Sign up!]
+      p(style='margin-top:15px') Here, you will find a message board of anonymous messages. You can add your own anonymous message as well if you sign up. 
+      p(style='margin-top:15px') If you wish to gain premium member access on sign up, remember the secret code: "access"
+      p(style='margin-top:15px') Want to sift through the veil of anonymity? #[a(href="/sign-up") Sign up!]
 
   h2(style='text-align:center;margin-top:25px') ␥ ␥ ␥
   div.message-board 
-    if messages 
+    if message_list
+      for message in message_list   
+        div.message-wrapper 
+          div.message-title-wrapper
+            img.message-title-img(src="./images/mask.png", alt="Masquerade mask" height='50px')
+            div.message-title-info
+              h2.message-title= message.title
+              if currentUser && currentUser.membership === "premium"
+                p.message-user-name= message.user + " ⏧ (" + message.timestamp.toLocaleString (undefined, { month: "short", day: "numeric", year: 'numeric' }) + ")"
+              else 
+                p(style="font-family:'Tangerine'") anonymous
+            
+          div.message-text-wrapper 
+            p.message-text= message.text
+
+          hr(style="width:30%;margin:25px auto 0")
 
     else 
       p No messages yet
 
+//- if currentUser && currentUser.membership === "premium"
+//-               h3.message-user-name= message.user
+//-               p= message.timestamp

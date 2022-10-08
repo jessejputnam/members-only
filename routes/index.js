@@ -14,17 +14,7 @@ const message_controller = require("../controllers/messageController");
 /* -------------------- MESSAGES -------------------- */
 
 //! GET request for list messages.
-router.get("/", function (req, res, next) {
-  // Message.find()
-  //   .sort({ timestamp: -1 })
-  //   .exec(function (err, list_messages) {
-  //     if (err) {
-  //       return next(err);
-  //     }
-  //     res.render("index", { title: "ExcluSieve", message_list: list_messages });
-  //   });
-  res.render("index", { title: "ExcluSieve" });
-});
+router.get("/", message_controller.message_list);
 
 router.get("/add-post", message_controller.add_message_get);
 

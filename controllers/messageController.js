@@ -2,8 +2,18 @@ const Message = require("../models/message");
 
 const { body, validationResult } = require("express-validator");
 
-// Display all messages
-exports.message_get = (req, res) => {};
+// Display list messages
+exports.message_list = (req, res, next) => {
+  Message.find()
+    .sort({ timestamp: "descending" })
+    .exec(function (err, list_messages) {
+      if (err) {
+        return next(err);
+      }
+      // Successful, so render
+      res.render("index", { title: "ExcluSieve", message_list: list_messages });
+    });
+};
 
 // Display add message form
 exports.add_message_get = (req, res, next) => {

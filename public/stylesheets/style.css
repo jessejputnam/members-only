@@ -98,6 +98,15 @@ a:hover {
 
 .title-wrapper {
   display: flex;
+  cursor: pointer;
+
+  transition: filter 0.5s;
+}
+
+@media (hover: hover) {
+  .title-wrapper:hover {
+    filter: invert(100%);
+  }
 }
 
 .title-wrapper h1 {
@@ -219,15 +228,42 @@ h1.alt-title {
 /* ############ #MESSAGE BOARD ############# */
 .message-board {
   width: clamp(400px, 90%, 800px);
+  background-color: rgba(127, 4, 4, 0.1);
   min-width: 400px;
-  box-shadow: 0 0 2px black;
-  min-height: 300px;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.453);
+  height: 700px;
   margin: 20px auto 0;
-  padding: 10px 15px;
+  padding: 20px 15px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   row-gap: 25px;
+  overflow-y: scroll;
+  /* Firefox */
+  scrollbar-width: none;
+  /* IE 10+ */
+  -ms-overflow-style: none;
+}
+/* Webkit */
+.message-board::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.message-wrapper {
+  padding: 15px;
+}
+
+.message-title-wrapper {
+  display: flex;
+  column-gap: 15px;
+  align-items: flex-end;
+  margin-bottom: 15px;
+}
+
+.message-text {
+  margin-left: 105px;
+  font-family: "Square Peg", cursive;
 }
 
 /* ############ #Add Message ############# */

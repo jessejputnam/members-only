@@ -36,7 +36,7 @@ Programming focus:
 
 ### Screenshot
 
-![](./images/collage.jpg)
+![](./public/images/collage.jpg)
 
 ### Links
 

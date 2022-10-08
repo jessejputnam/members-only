@@ -26,7 +26,7 @@ block content
         if currentUser.admin === false
           form.profile-form(method='POST' action="/admin") 
             label(for="admin-pass") Admin Only - enter admin password
-            input#admin-pass(type='text' name='admin-pass')
+            input#admin-pass(type='password' name='admin-pass')
             button.btn(type='submit') admin access
 
     else

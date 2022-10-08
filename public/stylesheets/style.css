@@ -261,9 +261,51 @@ h1.alt-title {
   margin-bottom: 15px;
 }
 
+.message-text-wrapper {
+  display: flex;
+  column-gap: 10px;
+  justify-content: space-between;
+}
+
+.message-text-wrapper > form {
+  width: 100px;
+}
+
 .message-text {
-  margin-left: 105px;
   font-family: "Square Peg", cursive;
+  width: 85%;
+}
+
+.btn-delete {
+  font-family: "Gruppo", Arial, Helvetica, sans-serif;
+  font-size: 0.8rem;
+  background: linear-gradient(
+    to bottom right,
+    maroon,
+    rgb(142, 0, 0),
+    rgb(156, 0, 0),
+    rgb(180, 0, 0),
+    white,
+    rgb(177, 2, 2),
+    maroon
+  );
+  overflow: hidden;
+  height: 35px;
+  width: 35px;
+
+  transition: width 0.5s;
+}
+
+@media (hover: hover) {
+  .btn-delete:hover {
+    width: 100px;
+    filter: none;
+    color: white;
+  }
+}
+
+.nonadmin {
+  margin-left: 110px;
 }
 
 /* ############ #Add Message ############# */

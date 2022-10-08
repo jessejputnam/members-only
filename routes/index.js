@@ -13,7 +13,6 @@ const message_controller = require("../controllers/messageController");
 
 /* -------------------- MESSAGES -------------------- */
 
-//! GET request for list messages.
 router.get("/", message_controller.message_list);
 
 router.get("/add-post", message_controller.add_message_get);
@@ -37,6 +36,9 @@ router.post("/login", auth_controller.login_post);
 // GET request for logout
 router.get("/logout", auth_controller.logout_get);
 
+// POST request for delete message
+router.post("/delete-message", message_controller.delete_message);
+
 /* ----------------- MEMBERSHIP ACCESS ----------------- */
 
 // GET request for profile
@@ -45,7 +47,6 @@ router.get("/profile", user_controller.profile_get);
 // POST request for premium membership
 router.post("/member", user_controller.member_post);
 
-//! POST request for admin access
-router.post("/admin", function (req, res) {});
+router.post("/admin", user_controller.admin_post);
 
 module.exports = router;

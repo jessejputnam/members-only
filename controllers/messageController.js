@@ -58,3 +58,20 @@ exports.add_message_post = [
     }
   }
 ];
+
+// Handle delete message on POST
+exports.delete_message = (req, res, next) => {
+  if (req.user.admin) {
+    Message.findByIdAndRemove(req.body.messageid, (err) => {
+      if (err) {
+        return next(err);
+      }
+      // Success, rerender
+      res.redirect("/");
+    });
+  } else {
+    const err = new Error("Unauthorized: non-admin attempted access");
+    err.status = 401;
+    return next(err);
+  }
+};

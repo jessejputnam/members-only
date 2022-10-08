@@ -26,5 +26,14 @@ exports.member_post = (req, res, next) => {
   }
 };
 
-//! TO COMPLETE
-exports.admin_post = (req, res) => {};
+exports.admin_post = (req, res, next) => {
+  if (req.body["admin-pass"] === "admin1200") {
+    User.findByIdAndUpdate(req.user._id, { admin: true }, function (err, docs) {
+      if (err) {
+        return next(err);
+      }
+      // Successful, redirect to profile
+      res.redirect("/profile");
+    });
+  }
+};
